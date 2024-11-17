@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<!--		
+		Title: Library of Me
+		Description: Books I've read and their ratings
+		Created by: Camille Crawford
+		Created on: May 5, 2024
+-->
+<html lang ="en">
+	<head>
+        <meta charset="utf-8">
+		<meta name="Camille Crawford" content="width-device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="libraryOfMe.css">
+		<title>Library of Me</title>
+		<link rel="icon" type="image/x-icon" href="favicon.PNG">
+	
+		<div id="container">
+			<header>
+			<br>
+				<h1>Library of Me</h1>
+				<br>
+				<h2><i>My personal reading log.</i></h2>
+			</header>
+			<br> 
+			<br>
+		
+
+	<!-- Navigation for TBR List -->
+	<nav>
+		<a href="tbr.html">To Be Read List</a>
+	</nav>
+
+	<br>
+	
+	<!-- Dropdown menu of genres to search and button -->
+	<form>
+		<label for="genre">Select a Genre:</label>
+		<select id="genre" name="genre">
+			<option value="all">All Books</option>
+			<option value="adventure">Adventure</option>
+			<option value="biography">Biography</option>
+			<option value="bipoc">BIPOC Authors</option>
+			<option value="black">Black Authors</option>
+			<option value="classics">Classics</option>
+			<option value="crime">Crime</option>
+			<option value="favorites">Favorites</option>
+			<option value="fiction">Fiction</option>
+			<option value="historical fiction">Historical Fiction</option>
+			<option value="history">History</option>
+			<option value="horror">Horror</option>
+			<option value="humor">Humor</option>
+			<option value="lgbtqia">LGBTQIA+</option>
+			<option value="nonfiction">Non Fiction</option>
+			<option value="romance">Romance</option>
+			<option value="science">Science</option>
+			<option value="science fiction">Science Fiction</option>
+			<option value="series">Series</option>
+			<option value="textbook">Textbook</option>
+			<option value="thriller">Thriller</option>
+			<option value="young adult">Young Adult</option>
+		</select>
+		
+		<button type="button" class="button" id="myButton">Submit</button>
+	
+	</form>
+	
+		<br>
+		<div id="output"></div>
+		</div>
+	</head>
+	
+	<body>	
+	<script>
+	/* get the button button object 
+	*/
+		const button = document.getElementById("myButton");
+
+	/* get the output div object
+	*/
+		const outputDiv = document.getElementById("output");
+
+	/* assign a callback function to handle the button click 
+	*/
+		button.addEventListener("click", onSearchClick);
+
+	/* this function calls findBooksByGenre and formats the returned 
+		   array of books into an unordered list in the output div
+	*/
+		function onSearchClick() {
+		    genre = document.getElementById("genre").value;
+		    foundBooks = findBooksByGenre(new Array(genre))
+		    outputDiv.innerHTML = "<ul>"
+		    foundBooks.forEach(foundBook => outputDiv.innerHTML += "<li>" + foundBook.title + "</li>");
+		    outputDiv.innerHTML += "</ul>"
+		}
+
+	/* this function returns an array a books for the given genre
+		   it uses nested anonynous functions 
+	*/
+		function findBooksByGenre(genres) {
+			results = books.filter(book => {
+				return book.genres.some(genre => {
+					return genres.includes(genre)
+				})
+			})
+			return results;
+		}
+			
+// Array of book list	
+		const books = [
+			{
+				id: "1",
+				title: "The Hitchhiker's Guide to the Galaxy by <i>Douglas Adams</i>",
+				series: "Book 1",
+				genres: ["fiction", "science fiction", "all", "humor", "adventure", "series"]
+			}, 
+			{
+				id: "2",
+				title: "Children of Blood and Bone by <i>Tomi Adeyemi</i>",
+				series: "Book 1",
+				genres: ["fiction", "young adult", "all", "fantasy", "romance", "series", "black", "bipoc"]
+			},
+			{
+				id: "3",
+				title: "In the Time of the Butterflies by <i>Julia Alvarez</i>",
+				genres: ["fiction", "historical fiction", "all", "history", "bipoc"]
+			},
+			{
+				id: "4",
+				title: "Speak by <i>Laurie Halse Anderson</i>",
+				genres: ["fiction", "all", "young adult"]
+			},
+			{
+				id: "5",
+				title: "Alias Grace by <i>Margaret Atwood</i>",
+				genres: ["fiction", "historical fiction", "all", "crime"]
+			},
+			{
+				id: "6",
+				title: "The Handmaid's Tale by <i>Margaret Atwood</i>",
+				series: "Book 1",
+				genres: ["fiction", "science fiction", "crime", "all", "series"]
+			},
+			{
+				id: "7",
+				title: "Red Queen by <i>Victoria Aveyard</i>",
+				series: "Book 1",
+				genres: ["fiction", "young adult", "fantasy", "romance", "all", "series"]
+			},
+			{
+				id: "8",
+				title: "Glass Sword by <i>Victoria Aveyard</i>",
+				series: "Book 2",
+				genres: ["fiction", "young adult", "fantasy", "all", "romance", "series"]
+			},
+			{
+				id: "9",
+				title: "Giovanni's Room by <i>James Baldwin</i>",
+				genres: ["fiction", "all", "romance", "lgbtqia", "black", "bipoc"]
+			},
+			{
+				id: "10",
+				title: "The Fourth Monkey by <i>J. D. Barker</i>",
+				genres: ["fiction", "thriller", "all", "crime"]
+			},
+			{
+				id: "11",
+				title: "The Vanishing Half by <i>Brit Bennett</i>",
+				genres: ["fiction", "all", "black", "bipoc"]
+			},
+			{
+				id: "12",
+				title: "Jane Eyre by <i>Charlotte Brontë</i>",
+				genres: ["ficiton", "all", "classics"]
+			},
+			{
+				id: "13",
+				title: "World War Z: An Oral History of the Zombie War by <i>Max Brooks</i>",
+				genres: ["fiction", "horror", "all", "fantasy"]
+			},
+			{
+				id: "14",
+				title: "Hyperbole and a Half by <i>Allie Brosh</i>",
+				genres: ["nonfiction", "humor", "memoir", "all", "graphic novel", "favorites"]
+			},
+			{
+				id: "15",
+				title: "A Song of Wraiths and Ruin by <i>Roseanne A. Brown</i>",
+				series: "Book 1",
+				genres: ["fiction", "young adult", "fantasy", "all", "adventure", "romance", "series", "black", "bipoc"]
+			},
+			{
+				id: "16",
+				title: "Kindred by <i>Octavia Butler</i>",
+				genres: ["fiction", "historical fiction", "all", "science fiction", "favorites", "black", "bipoc"]
+			},
+			{
+				id: "17",
+				title: "Parable of the Sower by <i>Octavia Butler</i>",
+				series: "Book 1",
+				genres: ["fiction", "science fiction", "all", "favorites", "series", "black", "bipoc"]
+			},
+			{
+				id: "18",
+				title: "Wild Seed by <i>Octavia Butler</i>",
+				series: "Book 1",
+				genres: ["fiction", "science fiction", "all", "fantasy", "favorites", "series", "black", "bipoc"]
+			},
+			{
+				id: "19",
+				title: "Murder on the Orient Express by <i>Agatha Christie</i>",
+				genres: ["fiction", "all", "crime", "classics"]
+			},
+			{
+				id: "20",
+				title: "Ready Player One by <i>Ernest Cline</i>",
+				series: "Book 1",
+				genres: ["ficiton", "science fiction", "all", "fantasy", "series"]
+			},
+			{
+				id: "21",
+				title: "Between the World and Me by <i>Ta-Nehisi Coates</i>",
+				genres: ["nonfiction", "biography", "all", "history", "favorites", "black", "bipoc"]
+			},
+			{
+				id: "22",
+				title: "The Hunger Games by <i>Suzanne Collins</i>",
+				series: "Book 1",
+				genres: ["fiction", "science fiction", "all", "young adult", "adventure", "series"]
+			},
+			{
+				id: "23",
+				title: "Catching Fire by <i>Suzanne Collins</i>",
+				series: "Book 2",
+				genres: ["fiction", "science fiction", "young adult", "all", "adventure", "romance", "series"]
+			},
+			{
+				id: "24",
+				title: "Mockingjay by <i>Suzanne Collins</i>",
+				series: "Book 3",
+				genres: ["fiction", "science fiction", "young adult", "all", "adventure", "romance", "series"]
+			},
+			{
+				id: "25",
+				title: "The Ballad of Songbirds and Snakes by <i>Suzanne Collins</i>",
+				series: "Book 0",
+				genres: ["fiction", "science fiction", "young adult", "all", "adventure", "romance", "favorites", "series"]
+			},
+			{
+				id: "26",
+				title: "The Farming of Bones by <i>Edwidge Danticat</i>",
+				genres: ["fiction", "historical fiction", "all", "history", "black", "bipoc"]
+			},
+			{
+				id: "27",
+				title: "Room by <i>Emma Donoghue</i>",
+				genres: ["fiction", "all", "crime"]
+			},
+			{
+				id: "28",
+				title: "Waiter Rant by <i>Steve Dublanica</i>",
+				genres: ["nonfiction", "biography", "all", "humor", "biography", "favorites"]
+			},
+			{
+				id: "29",
+				title: "Look Closer by <i>David Ellis</i>",
+				genres: ["fiction", "thriller", "all", "crime"]
+			},
+			{
+				id: "30",
+				title: "The Guest List by <i>Lucy Foley</i>",
+				genres: ["fiction", "all", "thriller"]
+			},
+			{
+				id: "31",
+				title: "Starting Out with Programming Logic and Design by <i>Tony Gaddis</i>",
+				genres: ["nonfiction", "textbook", "all", "science"]
+			},
+			{
+				id: "32",
+				title: "American Gods by <i>Neil Gaiman</i>",
+				series: "Book 1",
+				genres: ["fiction", "fantasy", "all", "science fiction", "horror", "adventure", "favorites", "series"]
+			},
+			{
+				id: "33",
+				title: "Anansi Boys by <i>Neil Gaiman</i>",
+				series: "Book 2",
+				genres: ["fiction", "fantasy", "all", "science fiction", "humor", "favorites", "series"]
+			},
+			{
+				id: "34",
+				title: "Neverwhere by <i>Neil Gaiman</i>",
+				genres: ["fiction", "fantasy", "all", "horror", "adventure", "science fiction"]
+			},
+			{
+				id: "35",
+				title: "Ocean at the End of the Lane by <i>Neil Gaiman</i>",
+				genres: ["fiction", "fantasy", "all", "horror", "young adult", "science fiction"]
+			},
+			{
+				id: "36",
+				title: "Caraval by <i>Stephanie Garber</i>",
+				series: "Book 1",
+				genres: ["fiction", "fantasy", "all", "adventure", "romance", "favorites", "series"]
+			},
+			{
+				id: "37",
+				title: "Legendary by <i>Stephanie Garber</i>",
+				series: "Book 2",
+				genres: ["fiction", "fantasy", "all", "adventure", "romance", "series"]
+			},
+			{
+				id: "38",
+				title: "One Hundred Years of Solitude by <i>Gabriel García Márquez</i>",
+				genres: ["fiction", "all", "historical fiction", "favorites", "bipoc"]
+			},
+			{
+				id: "39",
+				title: "The Yellow Wall-Paper by <i>Charlotte Perkins Gilman</i>",
+				genres: ["fiction", "horror", "all", "short story", "classics"]
+			},
+			{
+				id: "40",
+				title: "Full House by <i>Stephen Jay Gould</i>", 
+				genres: ["nonfiction", "all", "history", "science"]
+			},
+			{
+				id: "41",
+				title: "The Midnight Library by <i>Matt Haig</i>",
+				genres: ["fiction", "fantasy", "all", "science fiction"]
+			},
+			{
+				id: "42",
+				title: "What Was She Thinking? Notes On a Scandal by <i>Zoe Heller</i>",
+				genres: ["fiction", "all", "crime"]
+			},
+			{
+				id: "43",
+				title: "For Whom the Bell Tolls by <i>Ernest Hemingway</i>",
+				genres: ["fiction", "all", "historical fiction", "classics"]
+			},
+			{
+				id: "44",
+				title: "Horrorstör by <i>Grady Hendrix</i>",
+				genres: ["fiction", "horror", "all", "thriller"]
+			},
+			{
+				id: "45",
+				title: "How to Sell a Haunted House by <i>Grady Hendrix</i>",
+				genres: ["fiction", "horror", "all", "thriller"]
+			},
+			{
+				id: "46",
+				title: "Jar of Hearts by <i>Jennifer Hillier</i>",
+				genres: ["fiction", "crime", "horror", "all", "thriller"]
+			},
+			{
+				id: "47",
+				title: "The Odyssey by <i>Homer</i>",
+				series: "Book 1",
+				genres: ["fiction", "poetry", "fantasy", "all", "series", "classics"]
+			},
+			{
+				id: "48",
+				title: "The Iliad by <i>Homer</i>",
+				series: "Book 2",
+				genres: ["fiction", "poetry", "fantasy", "all", "series", "classics"]
+			},
+			{
+				id: "49",
+				title: "It Ends with Us by <i>Colleen Hoover</i>",
+				series: "Book 1",
+				genres: ["fiction", "all", "series", "crime"]
+			},
+			{
+				id: "50",
+				title: "It Starts with Us by <i>Colleen Hoover</i>",
+				series: "Book 2",
+				genres: ["fiction", "all", "series", "crime"]
+			},
+			{
+				id: "51",
+				title: "Every Tongue Got to Confess by <i>Zora Neale Hurston</i> ",
+				genres: ["nonfiction", "fiction", "all", "historical fiction", "history", "favorites", "black", "bipoc"]
+			},
+			{
+				id: "52",
+				title: "Their Eyes Were Watching God by <i>Zora Neale Hurston</i>",
+				genres: ["fiction", "all", "historical fiction", "classics", "black", "bipoc"]
+			},
+			{
+				id: "53",
+				title: "We Are Never Meeting in Real Life by <i>Samantha Irby</i>",
+				genres: ["nonfiction", "humor", "all", "biography", "favorites", "lgbtqia", "black", "bipoc"]
+			},
+			{
+				id: "54",
+				title: "Wow, No Thank You by <i>Samantha Irby</i>",
+				genres: ["nonfiction", "humor", "all", "biography", "favorites", "lgbtqia", "black", "bipoc"]
+			},
+			{
+				id: "55",
+				title: "Quietly Hostile by <i>Samantha Irby</i>",
+				genres: ["nonfiction", "humor", "all", "biography", "favorites", "lgbtqia", "black", "bipoc"]
+			},
+			{
+				id: "56",
+				title: "The Turn of the Screw by <i>Henry James</i>",
+				genres: ["fiction", "all", "horror", "classics"]
+			},
+			{
+				id: "57",
+				title: "The Fifth Season by <i>N.K. Jemisin</i>",
+				series: "Book 1",
+				genres: ["fiction", "fantasy", "all", "science fiction", "favorites", "series", "black", "bipoc"]
+			},
+			{
+				id: "58",
+				title: "The Obelisk Gate by <i>N.K. Jemisin</i>",
+				series: "Book 2",
+				genres: ["fiction", "fantasy", "all", "science fiction", "favorites", "series", "black", "bipoc"]
+			},
+			{
+				id: "59",
+				title: "The Stone Sky by <i>N.K. Jemisin</i>",
+				series: "Book 3",
+				genres: ["fiction", "fantasy", "all", "science fiction", "favorites", "series", "black", "bipoc"]
+			},
+			{
+				id: "60",
+				title: "The Phantom Tollbooth by <i>Norton Juster</i>",
+				genres: ["fiction", "fantasy", "all", "young adult", "humor"]
+			},
+			{
+				id: "61",
+				title: "The Metamorphosis by <i>Franz Kafka</i>",
+				genres: ["fiction", "fantasy", "all", "horror", "classics"]
+			},
+			{
+				id: "62",
+				title: "Quackery: A Brief History fo the Worst Ways to Cure Everything by <i>Lydia Kang & Nate Pedersen</i>",
+				genres: ["nonfiction", "history", "all", "science", "humor"]
+			},
+			{
+				id: "63",
+				title: "Several People Are Typing by <i>Calvin Kasulke</i>",
+				genres: ["fiction", "science fiction", "all", "humor", "horror", "favorites", "romance", "lgbtqia"]
+			},
+			{
+				id: "64",
+				title: "Before the Coffee Gets Cold by <i>Toshikazu Kawaguchi</i>", 
+				series: "Book 1",
+				genres: ["fiction", "fantasy", "all", "science fiction", "series", "bipoc"]
+			},
+			{
+				id: "65",
+				title: "Carrie by <i>Stephen King</i>",
+				genres: ["fiction", "horror", "all", "thriller", "fantasy"]
+			},
+			{
+				id: "66",
+				title: "Everything's Eventual by <i>Stephen King</i>",
+				genres: ["fiction", "horror", "all", "thriller", "fantasy"]
+			},
+			{
+				id: "67",
+				title: "Fairy Tale by <i>Stephen King</i>",
+				genres: ["fiction", "fantasy", "horror", "all", "thriller", "adventure", "science fiction"]
+			},
+			{
+				id: "68",
+				title: "The Shining by <i>Stephen King</i>",
+				series: "Book 1",
+				genres: ["fiction", "horror", "thriller", "all", "fantasy", "favorites", "series"]
+			},
+			{
+				id: "69",
+				title: "The House in the Cerulean Sea by <i>TJ Klune</i>",
+				series: "Book 1",
+				genres: ["fiction", "fantasy", "all", "young adult", "series", "lgbtqia", "romance"]
+			},
+			{
+				id: "70", 
+				title: "Under the Whispering Door by <i>TJ Klune</i>",
+				genres: ["fiction", "fantasy", "all", "young adult", "favorites", "lgbtqia", "romance"]
+			},
+			{
+				id: "71",
+				title: "Babel by <i>R. F. Kuang</i>",
+				genres: ["fiction", "historical fiction", "all", "fantasy", "favorites", "bipoc"]
+			},
+			{
+				id: "72",
+				title: "Yellowface by <i>R. F. Kuang</i>",
+				genres: ["fiction", "thriller", "all", "crime", "favorites", "bipoc"]
+			},
+			{
+				id: "73",
+				title: "Just the Nicest Couple by <i>Mary Kubica</i>",
+				genres: ["fiction", "thriller", "all", "crime"]
+			},
+			{
+				id: "74",
+				title: "Local Woman Missing by <i>Mary Kubica</i>",
+				genres: ["fiction", "thriller", "all", "crime"]
+			},
+			{
+				id: "75",
+				title: "The Devil in the White City by <i>Erik Larson</i>",
+				genres: ["nonfiction", "history", "all", "crime", "biography"]
+			},
+			{
+				id: "76",
+				title: "The Changeling by <i>Victor Lavalle</i>",
+				genres: ["fiction", "horror", "fantasy", "all", "science fiction", "thriller", "favorites", "black", "bipoc"]
+			},
+			{
+				id: "77",
+				title: "Shutter Island by <i>Dennis Lahane</i>",
+				genres: ["fiction", "horror", "thriller", "all", "crime", "favorites"]
+			},
+			{
+				id: "78",
+				title: "The Giver by <i>Lois Lowry</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "science fiction", "favorites", "classics"]
+			},
+			{
+				id: "79",
+				title: "Number the Stars by <i>Lois Lowry</i>",
+				genres: ["fiction", "historical fiction", "all", "young adult"]
+			},
+			{
+				id: "80",
+				title: "A Court of Thorns and Roses by <i>Sarah J Maas</i>",
+				series: "Book 1",
+				genres: ["fiction", "fantasy", "adventure", "all", "romance", "series"]
+			},
+			{
+				id: "81",
+				title: "A Court of Mist and Fury by <i>Sarah J Maas</i>",
+				series: "Book 2",
+				genres: ["fiction", "fantasy", "all", "adventure", "romance", "series"]
+			},
+			{
+				id: "82",
+				title: "A Court of Wings and Ruin by <i>Sarah J Maas</i>",
+				series: "Book 3",
+				genres: ["fiction", "fantasy", "all", "adventure", "romance", "series"]
+			},
+			{
+				id: "83",
+				title: "A Court of Frost and Starlight by <i>Sarah J Maas</i>",
+				series: "Book 4",
+				genres: ["fiction", "fantasy", "all", "adventure", "romance", "series"]
+			},
+			{
+				id: "84",
+				title: "A Court of Silver Flames by <i>Sarah J Maas</i>",
+				series: "Book 5",
+				genres: ["fiction", "fantasy", "all", "adventure", "romance", "series"]
+			},
+			{
+				id: "85",
+				title: "House of Earth and Blood by <i>Sarah J Maas</i>",
+				series: "Book 1",
+				genres: ["fiction", "fantasy", "all", "adventure", "romance", "series"]
+			},
+			{
+				id: "86",
+				title: "In the Dream House by <i>Carmen Maria Machado</i>",
+				genres: ["nonfiction", "all", "biography", "bipoc"]
+			},
+			{
+				id: "87",
+				title: "Bird Box by <i>Josh Malerman</i>",
+				genres: ["fiction", "horror", "all", "science fiction", "thriller"]
+			},
+			{
+				id: "88",
+				title: "Arsenic and Adobo by <i>Mia P. Manansala</i>",
+				series: "Book 1",
+				genres: ["fiction", "thriller", "all", "series", "bipoc"]
+			},
+			{
+				id: "89",
+				title: "A Game of Thrones by <i>George R. R. Martin</i>",
+				series: "Book 1",
+				genres: ["fiction", "fantasy", "all", "adventure", "series"]
+			},
+			{
+				id: "90",
+				title: "The Communist Manifesto by <i>Karl Marx</i>",
+				genres: ["nonfiction", "history", "all", "textbook", "classics"]
+			},
+			{
+				id: "91",
+				title: "Mathematics for Computer Technology by <i>Robert McCullough</i>",
+				genres: ["nonfiction", "science", "all", "textbook"]
+			},
+			{
+				id: "92",
+				title: "I'm Glad My Mom Died by <i>Jeanette McCurdy</i>",
+				genres: ["nonfiction", "biography", "all", "biography", "crime"]
+			},
+			{
+				id: "93",
+				title: "The Housemaid by <i>Freida McFadden</i>",
+				series: "Book 1",
+				genres: ["fiction", "thriller", "all", "crime", "series"]
+			},
+			{
+				id: "94",
+				title: "The Inmate by <i>Frieda McFadden</i>",
+				genres: ["fiction", "thriller", "all", "crime"]
+			},
+			{
+				id: "95",
+				title: "Never Lie by <i>Freida McFadden</i>",
+				genres: ["fiction", "thriller", "all", "crime", "romance"]
+			},
+			{
+				id: "96",
+				title: "One of Us is Lying by <i>Karen M. McManus</i>",
+				series: "Book 1",
+				genres: ["fiction", "young adult", "all", "thriller", "romance", "series"]
+			},
+			{
+				id: "97",
+				title: "The Silent Patient by <i>Alex Michaelides</i>",
+				genres: ["fiction", "thriller", "all", "crime", "favorites"]
+			},
+			{
+				id: "98",
+				title: "Circe by <i>Madeline Miller</i>",
+				genres: ["fiction", "fantasy", "all", "historical fiction", "history", "favorites"]
+			},
+			{
+				id: "99",
+				title: "Song of Achilles by <i>Madeline Miller</i>",
+				author: "Madeline Miller",
+				genres: ["fiction", "fantasy", "all", "historical fiction", "history", "favorites", "lgbtqia"]
+			},
+			{
+				id: "100",
+				title: "Responsive Web Design with HTML & CSS by <i>Jessica Minnick</i>",
+				genres: ["nonfiction", "science", "all", "textbook"]
+			},
+			{
+				id: "101",
+				title: "Mexican Gothic by <i>Silvia Moreno-Garcia</i>",
+				genres: ["fiction", "romance", "thriller", "all", "horror", "fantasy", "bipoc"]
+			},
+			{ 
+				id: "102",
+				title: "The Night Circus by <i>Erin Morgenstern</i>",
+				genres:["fiction", "fantasy", "romance", "all", "young adult", "historical fiction"]
+			},
+			{
+				id: "103",
+				title: "Beloved by <i>Toni Morrison</i>",
+				genres: ["fiction", "historical fiction", "all", "favorites", "classics", "black", "bipoc"]
+			},
+			{
+				id: "104",
+				title: "The Strange Library by <i>Haruki Murakami</i>",
+				genres: ["fiction", "fantasy", "all", "short story", "horror", "bipoc"]
+			},
+			{
+				id: "105",
+				title: "The Wind-Up Bird Chronicle by <i>Haruki Murakami</i>",
+				genres: ["ficiton", "all", "fantasy", "bipoc"]
+			},
+			{
+				id: "106",
+				title: "How High We Go in the Dark by <i>Sequoia Nagamatsu</i>",
+				genres: ["fiction", "science fiction", "all", "short story", "fantasy", "bipoc"]
+			},
+			{
+				id: "107",
+				title: "Akata Witch by <i>Nnedi Okorafor</i>",
+				genres: ["fiction", "fantasy", "all", "young adult", "series", "black", "bipoc"]
+			},
+			{
+				id: "108",
+				title: "Binti by <i>Nnedi Okorafor</i>",
+				genres: ["fiction", "fantasy", "all", "young adult", "series", "black", "bipoc"]
+			},
+			{
+				id: "109",
+				title: "Haunted by <i>Chuck Palahniuk</i>",
+				genres: ["fiction", "short story", "all", "horror", "thriller", "humor"]
+			},
+			{
+				id: "110",
+				title: "Pygmy by <i>Chuck Palahniuk</i>",
+				genres: ["fiction", "all", "thriller"]
+			},
+			{
+				id: "111",
+				title: "A Child Called It by <i>Dave Pelzer</i>",
+				genres: ["nonfiction", "all", "biography", "crime", "series"]
+			},
+			{
+				id: "112",
+				title: "Behind Her Eyes by <i>Sarah Pinborough</i>",
+				genres: ["fiction", "thriller", "all", "horror", "favorites"]
+			},
+			{
+				id: "113",
+				title: "The Republic by <i>Plato</i>",
+				genres: ["nonfiction", "history", "all", "textbook", "classics"]
+			},
+			{
+				id: "114",
+				title: "The Maid by <i>Nita Prose</i>",
+				genres: ["fiction", "thriller", "crime", "all", "series"]
+			},
+			{
+				id: "115", 
+				title: "The Golden Compass by <i>Phillip Pullman</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "science fiction", "series", "classics"]
+			},
+			{
+				id: "116",
+				title: "Hidden Pictures by <i>Jason Rekuluk</i>",
+				genres: ["fiction", "horror", "all", "thriller"]
+			},
+			{
+				id: "117",
+				title: "Interview with the Vampire by <i>Anne Rice</i>",
+				genres: ["fiction", "horror", "fantasy", "all", "historical fiction", "favorites", "series"]
+			},
+			{
+				id: "118",
+				title: "The Vampire Lestat by <i>Anne Rice</i>",
+				genres: ["fiction", "horror", "fantasy", "all", "historical fiction", "series"]
+			},
+			{
+				id: "119",
+				title: "Miss Peregrine's Home for Peculiar Children by <i>Ransom Riggs</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "horror", "historical fiction", "series"]
+			},
+			{
+				id: "120",
+				title: "The Lightning Thief by <i>Rick Riordan</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{
+				id: "121",
+				title: "The Sea of Monsters by <i>Rick Riordan</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{
+				id: "122",
+				title: "The Titan's Curse by <i>Rick Riordan</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{
+				id: "123",
+				title: "The Battle of the Labyrinth by <i>Rick Riordan</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{
+				id: "124",
+				title: "The Last Olympian by <i>Rick Riordan</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{
+				id: "125",
+				title: "The Lost Hero by <i>Rick Riordan</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{
+				id: "125",
+				title: "The Son of Neptune by <i>Rick Riordan</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{
+				id: "126",
+				title: "The Mark of Athena by <i>Rick Riordan</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{
+				id: "127",
+				title: "The House of Hades by <i>Rick Riordan</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{
+				id: "128",
+				title: "The Blood of Olympus by <i>Rick Riordan</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure"]
+			},
+			{
+				id: "129",
+				title: "Percy Jackson's Greek Gods by <i>Rick Riordan</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{
+				id: "130",
+				title: "Percy Jackson's Greek Heroes by <i>Rick Riordan</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{
+				id: "131",
+				title: "The Perfect Marriage by <i>Jeneva Rose</i>",
+				genres: ["fiction", "thriller", "all", "crime"]
+			},
+			{
+				id: "132",
+				title: "You Shouldn't Have Come Here by <i>Jeneva Rose</i>",
+				genres: ["fiction", "thriller", "horror", "all", "romance"]
+			},
+			{
+				id: "133",
+				title: "Divine Rivals by <i>Rebecca Ross</i>",
+				genres: ["fiction", "young adult", "fantasy", "romance", "all", "historical fiction", "young adult", "series"]
+			},
+			{
+				id: "134",
+				title: "Divergent by <i>Veronica Roth</i>",
+				genres: ["fiction", "young adult", "fantasy", "science fiction", "all", "romance", "series"]
+			},
+			{
+				id: "135", 
+				title: "Insurgent by <i>Veronica Roth</i>",
+				genres: ["fiction", "young adult", "fantasy", "science fiction", "all", "romance", "series"]
+			},
+			{
+				id: "136",
+				title: "Allegiant by <i>Veronica Roth</i>",
+				genres: ["fiction", "young adult", "fantasy", "science fiction", "all", "romance", "series"]
+			},
+			{
+				id: "137",
+				title: "Four by <i>Veronica Roth</i>",
+				genres: ["fiction", "young adult", "fantasy", "all", "science fiction", "series"]
+			},
+			{
+				id: "138",
+				title: "Harry Potter and the Sorcerer's Stone by <i>J.K. Rowling</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{
+				id: "139",
+				title: "Harry Potter and the Chamber of Secrets by <i>J.K. Rowling</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{
+				id: "140",
+				title: "Harry Potter and the Prisoner of Azkaban by <i>J.K. Rowling</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{
+				id: "141",
+				title: "Harry Potter and the Goblet of Fire by <i>J.K. Rowling</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{
+				id: "142",
+				title: "Harry Potter and the Order of the Phoenix by <i>J.K. Rowling</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{
+				id: "143",
+				title: "Harry Potter and the Half-Blood Prince by <i>J.K. Rowling</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{	id: "174",
+				title: "Harry Potter and the Deathy Hallows by <i>J.K. Rowling</i>",
+				genres: ["fiction", "fantasy", "young adult", "all", "adventure", "series"]
+			},
+			{
+				id: "144",
+				title: "Holes by <i>Louis Sachar</i>",
+				genres: ["ficiton", "young adult", "all", "adventure", "classics"]
+			},
+			{
+				id: "145",
+				title: "The Only One Left by <i>Riley Sager</i>",
+				genres: ["fiction", "thriller", "horror", "all", "favorites"]
+			},
+			{
+				id: "146",
+				title: "Don't Let Her Stay by <i>Nicola Sanders</i>",
+				genres: ["fiction", "thriller", "horror", "all", "crime"]
+			},
+			{
+				id: "147",
+				title: "Persepolis by <i>Marjane Satrapi</i>",
+				genres: ["nonfiction", "history", "memoir", "all", "biography", "graphic novel", "favorites", "classics", "bipoc"]
+			},
+			{
+				id: "148",
+				title: "The Invisible Life of Addie LaRue by <i>V. E. Schwab</i>",
+				genres: ["fiction", "fantasy", "romance", "all", "historical fiction", "favorites", "lgbtqia"]
+			},
+			{
+				id: "148",
+				title: "Saint X by <i>Alexis Schaitkin</i>",
+				genres: ["fiction", "thriller", "all", "crime"]
+			},
+			{
+				id: "149",
+				title: "A Midsummer Night's Dream by <i>William Shakespeare</i>",
+				genres: ["fiction", "fantasy", "romance", "all", "humor", "poetry", "classics"]
+			},
+			{
+				id: "150",
+				title: "Macbeth by <i>William Shakespeare</i>",
+				genres: ["fiction", "poetry", "all", "historical fiction", "classics"]
+			},
+			{
+				id: "151",
+				title: "Hamlet by <i>William Shakespeare</i>",
+				genres: ["fiction", "poetry", "all", "historical fiction", "classics"]
+			},
+			{
+				id: "152",
+				title: "Othello by <i>William Shakespeare</i>",
+				genres: ["fiction", "all", "poetry", "classics"]
+			},
+			{
+				id: "153",
+				title: "I Work at a Public Library by <i>Gina Sheridan</i>",
+				genres: ["nonfiction", "humor", "memoir", "short story", "all", "favorites"]
+			},
+			{
+				id: "154",
+				title: "A Light in the Attic by <i>Shel Silverstein</i>",
+				genres: ["fiction", "poetry", "all", "humor", "young adult"]
+			},
+			{
+				id: "155",
+				title: "Where the Sidewalk Ends by <i>Shel Silverstein</i>",
+				genres: ["fiction", "poetry", "all", "humor", "young adult", "favorites"]
+			},
+			{
+				id: "156",
+				title: "The Violin Conspiracy by <i>Brendan Slocomb</i>",
+				genres: ["fiction", "thriller", "all", "crime", "black", "bipoc"]
+			},
+			{
+				id: "157",
+				title: "An Unkindness of Ghosts by <i>Rivers Solomon</i>",
+				genres: ["fiction", "science fiction", "all", "fantasy", "thriller", "black", "bipoc"]
+			},
+			{
+				id: "158",
+				title: "Go Ask Alice by <i>Beatrice Sparks</i>",
+				genres: ["fiction", "all", "young adult"]
+			},
+			{
+				id: "159",
+				title: "Dracula by <i>Bram Stoker</i>",
+				genres: ["fiction", "horror", "all", "fantasy", "favorites", "classics"]
+			},
+			{
+				id: "160",
+				title: "Nine Lives by <i>Peter Swanson</i>",
+				genres: ["fiction", "thriller", "all", "crime"]
+			},
+			{
+				id: "161",
+				title: "Camp Damascus by <i>Chuck Tingle</i>",
+				genres: ["fiction", "horror", "all", "thriller", "fantasy"]
+			},
+			{
+				id: "162",
+				title: "The Hobbit by <i>J.R.R. Tolkein</i>",
+				genres: ["fiction", "fantasy", "adventure", "all", "young adult", "science fiction", "series", "classics"]
+			},
+			{
+				id: "163",
+				title: "The Fellowship of the Ring by <i>J.R.R. Tolkein</i>",
+				genres: ["fiction", "fantasy", "adventure", "all", "young adult", "science fiction", "series", "classics"]
+			},
+			{
+				id: "164",
+				title: "The Color Purple by <i>Alice Walker</i>",
+				genres: ["fiction", "all", "historical fiction", "classics", "lgbtqia", "black", "bipoc"]
+			},
+			{
+				id: "165",
+				title: "The Last House on Needless Street by <i>Catriona Ward</i>",
+				genres: ["fiction", "horror", "all", "thriller", "crime"]
+			},
+			{
+				id: "166",
+				title: "The It Girl by <i>Ruth Ware</i>",
+				genres: ["fiction", "thriller", "all", "crime", "favorites"]
+			},
+			{
+				id: "167",
+				title: "Project Hail Mary by <i>Andy Weir</i>",
+				genres: ["fiction", "science fiction", "all", "thriller", "fantasy", "adventure", "favorites"]
+			},
+			{
+				id: "168",
+				title: "Mr. Wuffles! by <i>David Wiesner</i>",
+				genres: ["fiction", "fantasy", "humor", "all", "adventure", "science fiction"]
+			},
+			{
+				id: "169",
+				title: "Midnight Mass by <i>F. Paul Wilson</i>",
+				genres: ["fiction", "horror", "all", "fantasy", "thriller"]
+			},
+			{
+				id: "170",
+				title: "A Flicker in the Dark by <i>Stacy Willingham</i>",
+				author: "Stacy Willingham",
+				genres: ["fiction", "thriller", "all", "crime"]
+			},
+			{
+				id: "171",
+				title: "Fourth Wing by <i>Rebecca Yarros</i>",
+				genres: ["fiction", "fantasy", "romance", "all", "young adult", "adventure", "favorites", "series"]
+			},
+			{
+				id: "172",
+				title: "Iron Flame by <i>Rebecca Yarros</i>",
+				genres: ["fiction", "fantasy", "romance", "all", "young adult", "adventure", "series" ]
+			},
+			{
+				id: "173",
+				title: "The Sun is Also a Star by <i>Nicola Yoon</i>",
+				genres: ["fiction", "romance", "all", "young adult", "bipoc"]
+			}
+];
+
+
+	</script>
+	
+	<footer>
+		<h4>Camille Crawford</h4>
+	</footer>
+	
+	</body>
+
+</html>

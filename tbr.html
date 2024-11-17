@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<!--		
+		Title: Library of Me - TBR
+		File Name: tbr.html
+		Description: My To-Be-Read List
+		Created by: Camille Crawford
+		Created on: May 5, 2024
+-->
+<html lang ="en">
+	<head>
+        <meta charset="utf-8">
+		<meta name="author" content="Camille Crawford">
+		<meta name="viewport" content="width-device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="libraryOfMe.css">
+		<title>Library of Me</title>
+		<link rel="icon" type="image/x-icon" href="favicon.PNG">
+	</head>
+	
+	<body>
+		<div id="container">
+			<header>
+			<br>
+				<h1>Library of Me</h1>
+				<br>
+				<h2><i>To-Be-Read List</i></h2>
+			</header>
+			<br>
+			<br>
+			
+		<!-- Navigation for Home -->
+			<nav>
+				<a href="index.html">Home</a>
+			</nav>
+			<br>
+			<br>
+		
+		<div>
+			<form>
+			<label for="genre">Select a Genre:</label>
+				<select id="genre" name="genre">
+					<option value="all">All Books</option>
+					<option value="adventure">Adventure</option>
+					<option value="biography">Biography</option>
+					<option value="bipoc">BIPOC Authors</option>
+					<option value="black">Black Authors</option>
+					<option value="classics">Classics</option>
+					<option value="crime">Crime</option>
+					<option value="fiction">Fiction</option>
+					<option value="fantasy">Fantasy</option>
+					<option value="audiobook">Have the Audiobook</option>
+					<option value="ebook">Have the Ebook</option>
+					<option value="physical">Have the Physical	</option>
+					<option value="historical fiction">Historical Fiction</option>
+					<option value="history">History</option>
+					<option value="horror">Horror</option>
+					<option value="humor">Humor</option>
+					<option value="lgbtqia">LGBTQIA+</option>
+					<option value="nonfiction">Non Fiction</option>
+					<option value="romance">Romance</option>
+					<option value="science">Science</option>
+					<option value="science fiction">Science Fiction</option>
+					<option value="series">Series</option>
+					<option value="textbook">Textbook</option>
+					<option value="thriller">Thriller</option>
+					<option value="young adult">Young Adult</option>
+				</select>
+		
+		<button type="button" class="button" id="myButton">Submit</button>
+		
+		</form>
+			<br>
+			<div id="output"></div>
+			</div>
+		</div>
+		
+		
+	<script>
+	/* get the button button object 
+	*/
+		const button = document.getElementById("myButton");
+
+	/* get the output div object
+	*/
+		const outputDiv = document.getElementById("output");
+
+	/* assign a callback function to handle the button click 
+	*/
+		button.addEventListener("click", onSearchClick);
+
+	/* this function calls findBooksByGenre and formats the returned 
+		   array of books into an unordered list in the output div
+	*/
+		function onSearchClick() {
+		    genre = document.getElementById("genre").value;
+		    foundBooks = findBooksByGenre(new Array(genre))
+		    outputDiv.innerHTML = "<ul>"
+		    foundBooks.forEach(foundBook => outputDiv.innerHTML += "<li>" + foundBook.title + "</li>");
+		    outputDiv.innerHTML += "</ul>"
+		}
+
+	/* this function returns an array a books for the given genre
+		   it uses nested anonymous functions 
+	*/
+		function findBooksByGenre(genres) {
+			results = books.filter(book => {
+				return book.genres.some(genre => {
+					return genres.includes(genre)
+				})
+			})
+			return results;
+		}
+			
+// Array of book list	
+		const books = [
+			{
+				id: "1",
+				title: "The Color of Law: A Forgotten History of How Our Government Segregated America by " +
+				"<i>Richard Rothstein</i>",
+				genres: ["nonfiction", "history", "all", "audiobook", "science"]
+			},
+			{
+				id: "2",
+				title: "Meaty by <i>Samantha Irby</i>",
+				genres: ["nonfiction", "humor", "all", "lgbtqia", "biography", "audiobook", "black", "bipoc"]
+			},
+			{
+				id: "3",
+				title: "Leave the World Behind by <i>Rumaan Alam</i>",
+				genres: ["fiction", "thriller", "horror", "all", "physical", "bipoc"]
+			},
+			{
+				id: "4",
+				title: "The 1619 Project: A New Origin Story by <i>Nikole Hannah-Jones</i>",
+				genres: ["nonfiction", "history", "all", "audiobook", "black", "bipoc"]
+			},
+			{
+				id: "5",
+				title: "Legendborn by <i>Tracy Deonn</i>",
+				series: "Book 1",
+				genres: ["fiction", "fantasy", "young adult", "all", "romance", "lgbtqia", "series", "physical", "black", "bipoc"]
+			},
+			{
+				id: "6", 
+				title: "Ace of Spades by <i>Faridah Àbíké-Íyímídé</i>",
+				genres: ["fiction", "young adult", "thriller", "all", "lgbtqia", "physical", "black", "bipoc"]
+			},
+			{
+				id: "7",
+				title: "Meidcal Apartheid by <i>Harriet A. Washington</i>",
+				genres: ["nonfiction", "history", "all", "science", "black", "bipoc"]
+			},
+			{
+				id: "8",
+				title: "Revolutionary Suicide by <i>Huey P. Newton</i>",
+				genres: ["nonfiction", "history", "all", "physical", "biography", "black", "bipoc"]
+			},
+			{
+				id: "9",
+				title: "Arabain Nights by <i>Scheherazade</i>",
+				genres: ["fiction", "physical", "adventure", "romance", "all", "fantasy", "bipoc"]
+			},
+			{
+				id: "10",
+				title: "An Indigenous People's History of the United States by <i>Roxanne Dunbar-Ortiz</i>",
+				genres: ["nonfiction", "history", "all", "physical", "bipoc"]
+			},
+			{
+				id: "11",
+				title: "House of Leaves by <i>Mark Z. Danielewski</i>",
+				genres: ["fiction", "physical", "horror", "fantasy", "all", "thriller"]
+			},
+			{
+				id: "12",
+				title: "The Mis-Education of the Negro by <i>Carter G. Woodson</i>",
+				genres: ["nonfiction", "history", "all", "physical", "black", "bipoc"]
+			},
+			{
+				id: "13",
+				title: "Love in the Time of Cholera by <i>Gabriel García Márquez</i>",
+				genres: ["fiction", "historical fiction", "all", "physical", "bipoc"]
+			},
+			{
+				id: "14",
+				title: "Killing Rage: Ending Racism by <i>bell hooks</i>",
+				genres: ["nonfiction", "history", "all", "physical", "black", "bipoc"]
+			},
+			{
+				id: "15", 
+				title: "Children of Virtue and Vengeance by <i>Tomi Adeyemi</i>",
+				series: "Book 2",
+				genres: ["fiction", "fantasy", "young adult", "all", "romance", "physical", "series", "black", "bipoc"]
+			},
+			{
+				id: "16",
+				title: "The Seven Husbands of Evelyn Hugo by <i>Taylor Jenkins Reid</i>",
+				genres: ["fiction", "historical fiction", "all", "romance", "lgbtqia"]
+			},
+			{
+				id: "17",
+				title: "The Secret Life of Groceries by <i>Benjamin Lorr</i>",
+				genres: ["nonfiction", "history", "audiobook", "all", "science"]
+			},
+			{
+				id: "18",
+				title: "The Body Keeps the Score by <i>Bessel van der Kolk</i>",
+				genres: ["nonfiction", "physical", "all", "science"]
+			},
+			{
+				id: "19",
+				title: "Gulp: Adventures on the Alimentary Canal by <i>Mary Roach</i>",
+				genres: ["nonfiction", "humor", "history", "all", "science", "physical"]
+			},
+			{
+				id: "20",
+				title: "Stiff by <i>Mary Roach</i>",
+				genres: ["nonfiction", "science", "physical", "all", "humor", "history"]
+			},
+			{
+				id: "21",
+				title: "Tess of the D'Urbervilles by <i>Thomas Hardy</i>",
+				genres: ["fiction", "historical fiction", "all", "audiobook"]
+			},
+			{
+				id: "22",
+				title: "The Butcher and the Wren by <i>Alaina Urquhart</i>",
+				genres: ["fiction", "crime", "horror", "all", "audiobook", "thriller"]
+			},
+			{
+				id: "23",
+				title: "Paradise Lost by <i>John Milton</i>",
+				genres: ["fiction", "all", "fantasy"]
+			},
+			{
+				id: "24",
+				title: "The Lottery by <i>Shirley Jackson</i>",
+				genres: ["fiction", "horror", "science fiction", "all", "audiobook"]
+			},
+			{
+				id: "25",
+				title: "Brave New World by <i>Aldous Huxley</i>",
+				genres: ["fiction", "science fiction", "fantasy", "all", "audiobook"]
+			},
+			{
+				id: "26",
+				title: "Sula by <i>Toni Morrison</i>",
+				genres: ["fiction", "historical fiction", "all", "physical", "black", "bipoc"]
+			},
+			{
+				id: "27",
+				title: "Caste: The Origins of Our Discontents by <i>Isabel Wilkerson</i>",
+				genres: ["nonfiction", "physical", "all", "history", "black", "bipoc"]
+			},
+			{
+				id: "28",
+				title: "The Jungle by <i>Upton Sinclair</i>",
+				genres: ["fiction", "audiobook", "all", "historical fiction"]
+			},
+			{
+				id: "29",
+				title: "Gone Girl by <i>Gillian Flynn</i>",
+				genres: ["fiction", "thriller", "crime", "all", "physical"]
+			},
+			{
+				id: "30",
+				title: "Sharp Objects by <i>Gillian Flynn</i>",
+				genres: ["fiction", "thriller", "all", "crime"]
+			},
+			{
+				id: "31",
+				title: "Things Fall Apart by <i>Chinua Achebe</i>",
+				genres: ["fiction", "physical", "all", "historical fiction", "black", "bipoc"]
+			},
+			{
+				id: "32",
+				title: "Song of Solomon by <i>Toni Morrison</i>",
+				genres: ["fiction", "physical", "all", "historical fiction", "black", "bipoc"]
+			},
+			{
+				id: "33",
+				title: "All Good People Here by <i>Ashley Flowers</i>",
+				genres: ["fiction", "thriller", "all", "crime"]
+			},
+			{
+				id: "34",
+				title: "Violeta by <i>Isabel Allende</i>",
+				genres: ["fiction", "historical fiction", "all", "romance", "bipoc"]
+			},
+			{
+				id: "35",
+				title: "The Field Guide to Dumb Birds of the Whole Stupid World by <i>Matt Kracht</i>",
+				series: "Book 2",
+				genres: ["nonfiction", "science", "all", "humor", "series"]
+			},
+			{
+				id: "36",
+				title: "Never Whistle at Night: An Indiginous Dark Fiction Anthology by <i>Shane Hawk & Theodore C. Van Alst Jr.</i>",
+				genres: ["fiction", "horror", "fantasy", "all", "thriller", "bipoc"]
+			},
+			{
+				id: "37",
+				title: "The Water Dancer by <i>Ta-Nehisi Coates</i>",
+				genres: ["fiction", "historical fiction", "all", "fantasy", "physical", "black", "bipoc"]
+			},
+			{
+				id: "38",
+				title: "The Book Thief by <i>Markus Zusak</i>",
+				genres: ["fiction", "historical fiction", "all", "young adult"]
+			},
+			{
+				id: "39",
+				title: "The Kite Runner by <i>Khaled Hosseini</i>",
+				genres: ["fiction", "all", "physical", "historical fiction", "bipoc"]
+			},
+			{
+				id: "40",
+				title: "The Girl with the Dragon Tattoo by <i>Stieg Larsson</i>",
+				genres: ["fiction", "all", "physical", "thriller", "crime"]
+			},
+			{
+				id: "41",
+				title: "The Stranger by <i>Albert Camus</i>",
+				genres: ["fiction", "all", "classics"]
+			},
+			{
+				id: "42",
+				title: "In Cold Blood by <i>Truman Capote</i>",
+				genres: ["fiction", "all", "crime", "history", "thriller", "classics"]
+			},
+			{
+				id: "43",
+				title: "The Haunting of Hill House by <i>Shirley Jackson</i>",
+				genres: ["fiction", "all", "horror", "thriller", "physical", "classics"]
+			},
+			{
+				id: "44",
+				title: "The Neverending Story by <i>Michael Ende</i>",
+				genres: ["fiction", "all", "fantasy", "young adult", "physical", "classics"]
+			},
+			{
+				id: "45",
+				title: "Jurassic Park by <i>Michael Crichton</i>",
+				genres: ["fiction", "all", "physical", "science fiction", "thriller", "fantasy", "horror", "adventure"]
+			},
+			{
+				id: "46",
+				title: "Schindler's List by <i>Thomas Keneally</i>",
+				genres: ["nonfiction", "all", "history", "physical", "classics"]
+			},
+			{
+				id: "47",
+				title: "Invisible Man by <i>Ralph Ellison</i>",
+				genres: ["fiction", "all","historical fiction", "classics", "black", "bipoc"]
+			},
+			{
+				id: "48",
+				title: "Gulliver’s Travels by <i>Jonathan Swift</i>",
+				genres: ["fiction", "all", "fantasy", "adventure", "classics"]
+			},
+			{
+				id: "49",
+				title: "The Hunchback of Notre Dame by <i>Victor Hugo</i>",
+				genres: ["fiction", "all", "historical fiction", "classics"]
+			},
+			{
+				id: "50",
+				title: "The Plague by <i>Albert Camus</i>",
+				genres: ["fiction", "all", "historical fiction", "classics"]
+			},
+			{
+				id: "51",
+				title: "Where the Crawdad's Sing by <i>Delia Owens</i>",
+				genres: ["fiction", "all", "physical", "historical fiction", "romance"]
+			},
+			{
+				id: "52",
+				title: "Annihilation by <i>Jeff VanderMeer</i>",
+				series: "Book 1",
+				genres: ["fiction", "all", "science fiction", "horror", "fantasy", "thriller", "series"]
+			},
+			{
+				id: "53",
+				title: "Homegoing by <i>Yaa Gyasi</i>",
+				genres: ["fiction", "all", "historical ficiton", "black", "bipoc"]
+			},
+			{
+				id: "54",
+				title: "In a Dark, Dark, Wood by <i>Ruth Ware</i>",
+				genres: ["fiction", "all", "thriller", "crime", "horror"]
+			},
+			{
+				id: "55",
+				title: "My Sister, the Serial Killer by <i>Oyinkan Braithwaite</i>",
+				genres: ["fiction", "all", "physical", "thriller", "crime", "horror", "black", "bipoc"]
+			},
+			{
+				id: "56",
+				title: "A Darker Shade of Magic by <i>V.E. Schwab</i>",
+				series: "Book 1",
+				genres: ["fiction", "all", "fantasy", "young adult", "adventure", "series"]
+			},
+			{
+				id: "57",
+				title: "The Sanatorium by <i>Sarah Pearse</i>",
+				series: "Book 1",
+				genres: ["fiction", "all", "thriller", "crime", "horror", "series"]
+			},
+			{
+				id: "58",
+				title: "Little Fires Everywhere by <i>Celeste Ng</i>",
+				genres: ["fiction", "all", "bipoc"]
+			},
+			{
+				id: "59",
+				title: "Love by <i>Toni Morrison</i>",
+				genres: ["fiction", "all", "classics", "black", "bipoc"]
+			},
+			{
+				id: "60",
+				title: "A Blade So Black by <i>L.L. McKinney</i>",
+				genres: ["fiction", "all", "fantasy", "young adult", "adventure", "black", "bipoc"]
+			},
+			{
+				id: "61",
+				title: "The Trauma Cleaner by <i>Sarah Krasnostein</i>",
+				genres: ["nonfiction", "all", "biography", "lgbtqia"]
+			},
+			{
+				id: "62",
+				title: "Maame by <i>Jessica George</i>",
+				genres: ["fiction", "all", "black", "bipoc"]
+			},
+			{
+				id: "63",
+				title: "How to Say Babylon by <i>Safiya Sinclair</i>",
+				genres: ["nonfiction", "all", "biography", "black", "bipoc"]
+			},
+			{
+				id: "64",
+				title: "Astor: The Rise and Fall of an American Fortune by <i>Anderson Cooper</i>",
+				genres: ["nonfiction", "all", "history", "biography"]
+			},
+			{
+				id: "65",
+				title: "Sure, I'll Join Your Cult by <i>Maria Bamford</i>",
+				genres: ["nonfiction", "all", "biography", "humor"]
+			},
+			{
+				id: "66",
+				title: "The Heaven & Earth Grocery Store by <i>James McBride</i>",
+				genres: ["fiction", "all", "historical fiction", "black", "bipoc"]
+			},
+			{
+				id: "67",
+				title: "The Housemaid's Secret by <i>Freida McFadden</i>",
+				series: "Book 2",
+				genres: ["fiction", "all", "thriller", "crime", "series"]
+			},
+			{
+				id: "68",
+				title: "None of This Is True by <i>Lisa Jewell</i>",
+				genres: ["fiction", "all", "thriller", "crime"]
+			},
+			{
+				id: "69",
+				title: "All the Sinners Bleed by <i>S.A. Cosby</i>",
+				genres: ["fiction", "all", "thriller", "crime", "black", "bipoc"]
+			},
+			{
+				id: "70",
+				title: "The Coworker by <i>Freida McFadden</i>",
+				genres: ["fiction", "all", "thriller", "crime"]
+			},
+			{
+				id: "71",
+				title: "Good Bad Girl by <i>Alice Feeny</i>",
+				genres: ["fiction", "all", "thriller", "crime"]
+			},
+			{
+				id: "72",
+				title: "Legends & Lattes by <i>Travis Baldtree</i>",
+				genres: ["fiction", "all", "fantasy", "romance", "lgbtqia"]
+			},
+			{
+				id: "73",
+				title: "Clytemnestra by <i>Costanza Casati</i>",
+				genres: ["fiction", "all", "fantasy", "historical fiction"]
+			},
+			{
+				id: "74",
+				title: "Atalanta by <i>Jennifer Saint</i>",
+				genres: ["fiction", "all", "fantasy", "historical fiction", "romance"]
+			},
+			{
+				id: "75",
+				title: "The September House by <i>Carissa Orlando</i>",
+				genres: ["fiction", "all", "horror", "thriller"]
+			},
+			{
+				id: "76",
+				title: "The Reformatory by <i>Tananarive Due</i>",
+				genres: ["fiction", "all", "horror", "historical fiction", "thriller", "black", "bipoc"]
+			},
+			{
+				id: "77",
+				title: "Delicious Monsters by <i>Liselle Sambury</i>",
+				genres: ["fiction", "all", "horror", "young adult", "fantasy", "thriller", "black", "bipoc"]
+			},
+			{
+				id: "78",
+				title: "Lessons in Chemistry by <i>Bonnie Garmus</i>",
+				genres: ["fiction", "all", "historical fiction", "romance"]
+			},
+			{
+				id: "79",
+				title: "Tomorrow, Tomorrow, and Tomorrow by <i>Gabrielle Zevin</i>",
+				genres: ["fiction", "all", "historical fiction", "romance"]
+			},
+			{
+				id: "80",
+				title: "Killers of the Flower Moon by <i>David Grann</i>",
+				genres: ["nonfiction", "all", "crime", "history"]
+			},
+			{
+				id: "81",
+				title: "A Head Full of Ghosts by <i>Paul Tremblay</i>",
+				genres: ["fiction", "all", "horror", "thriller"]
+			},
+			{
+				id: "82",
+				title: "Sapiens: A Brief History of Humankind by <i>Yuval Noah Harari</i>",
+				genres: ["nonfiction", "all", "history", "science"]
+			},
+			{
+				id: "83",
+				title: "A People's History of the United States by <i>Howard Zinn</i>",
+				genres: ["nonfiction", "all", "history", "physical"]
+			},
+			{
+				id: "84",
+				title: "Dune by <i>Frank Herbert</i>",
+				series: "Book 1",
+				genres: ["fiction", "all", "physical", "science fiction", "fantasy", "adventure", "classics", "series"]
+			},
+			{
+				id: "85",
+				title: "Dune Messiah by <i>Frank Herbert</i>",
+				series: "Book 2",
+				genres: ["fiction", "all", "physical", "science fiction", "fantasy", "adventure", "classics", "series"]
+			},
+			{
+				id: "86",
+				title: "Children of Dune by <i>Frank Herbert</i>",
+				series: "Book 3",
+				genres: ["fiction", "all", "physical", "science fiction", "fantasy", "adventure", "classics", "series"]
+			},
+			{
+				id: "87",
+				title: "God Emperor of Dune by <i>Frank Herbert</i>",
+				series: "Book 4",
+				genres: ["fiction", "all", "science fiction", "fantasy", "adventure", "classics", "series"]
+			},
+			{
+				id: "88",
+				title: "Heretics of Dune by <i>Frank Herbert</i>",
+				series: "Book 5",
+				genres: ["fiction", "all", "science fiction", "fantasy", "adventure", "classics", "series"]
+			},
+			{
+				id: "89",
+				title: "Chapterhouse: Dune by <i>Frank Herbert</i>",
+				series: "Book 6",
+				genres: ["fiction", "all", "science fiction", "fantasy", "adventure", "classics", "series"]
+			},
+			{
+				id: "90",
+				title: "The Priory of the Orange Tree by <i>Samantha Shannon</i>",
+				genres: ["fiction", "all", "audiobook", "fantasy", "lgbtqia", "romance"]
+			},
+			{
+				id: "91",
+				title: "Everyone in My Family Has Killed Someone by <i>Benjamin Stevenson</i>",
+				genres: ["fiction", "all", "thriller", "crime", "humor"]
+			},
+			{
+				id: "92",
+				title: "Cultish: The Language of Fanaticism by <i>Amanda Montell</i>",
+				genres: ["nonfiction", "all", "ebook", "history"]
+			},
+			{
+				id: "93",
+				title: "The Poppy War by <i>R.F. Kuang</i>",
+				series: "Book 1",
+				genres: ["fiction", "all", "physical", "series", "fantasy", "historical fiction", "bipoc"]
+			},
+			{
+				id: "94",
+				title: "The One by <i>John Marrs</i>",
+				genres: ["fiction", "all", "ebook", "thriller", "science fiction", "romance"]
+			},
+			{
+				id: "95",
+				title: "The Perfect Child by <i>Lucinda Berry</i>",
+				genres: ["fiction", "all", "thriller", "horror", "crime"]
+			},
+			{
+				id: "96",
+				title: "The World We Make by <i>N.K. Jemisin</i>",
+				genres: ["fiction", "all", "fantasy", "science fiction", "lgbtqia", "horror", "black", "bipoc"]
+			},
+			{
+				id: "97",
+				title: "House of Hunger by <i>Alexis Henderson</i>",
+				genres: ["fiction", "all", "ebook", "horror", "fantasy", "lgbtqia", "historical fiction", "black", "bipoc"]
+			},
+			{
+				id: "98",
+				title: "The Year of the Witching by <i>Alexis Henderson</i>",
+				genres: ["fiction", "all", "ebook", "fantasy", "horror", "historical fiction", "young adult", "black", "bipoc"]
+			},
+			{
+				id: "99",
+				title: "She Memes Well by <i>Quinta Brunson</i>",
+				genres: ["nonfiction", "all", "biography", "humor", "black", "bipoc"]
+			},
+			{
+				id: "100",
+				title: "All the Dangerous Things by <i>Stacy Willingham</i>",
+				genres: ["fiction", "all", "thriller", "crime"]
+			},
+			{
+				id: "101",
+				title: "Excuse Me While I Ugly Cry by <i>Joya Goffney</i>",
+				genres: ["fiction", "all", "romance", "young adult", "black", "bipoc"]
+			},
+			{
+				id: "102",
+				title: "White Smoke by <i>Tiffany D. Jackson</i>",
+				genres: ["fiction", "all", "horror", "thriller", "young adult", "fantasy", "black", "bipoc"]
+			},
+			{
+				id: "103",
+				title: "A Good Girl's Guide to Murder by <i>Holly Jackson</i>",
+				genres: ["fiction", "all", "young adult", "thriller", "crime", "romance"]
+			},
+			{
+				id: "104",
+				title: "The Maidens by <i>Alex Michaelides</i>",
+				genres: ["fiction", "all", "thriller", "crime"]
+			},
+			{
+				id: "105",
+				title: "Home Before Dark by <i>Riley Sager</i> ",
+				genres: ["fiction", "all", "horror", "thriller"]
+			},
+			{
+				id: "106",
+				title: "What Moves the Dead by <i>T. Kingfisher</i>",
+				series: "Book 1",
+				genres: ["fiction", "all", "horror", "fantasy", "historical fiction", "series"]
+			},
+			{
+				id: "107",
+				title: "Dark Archives by <i>Megan Rosenbaum</i>",
+				genres: ["nonfiction", "all", "history", "science", "horror"]
+			},
+			{
+				id: "108",
+				title: "Working Stiff by <i>Judy Melinek & T.J. Mitchell</i>",
+				genres: ["nonfiction", "all", "science", "biography", "crime"]
+			},
+			{
+				id: "109",
+				title: "Gut: The Inside Story of Our Body's Most Underrated Organ by <i>Giulia Enders</i>",
+				genres: ["nonfiction", "all", "science"]
+			},
+			{
+				id: "110",
+				title: "Just My Type: A Book About Fonts by <i>Simon Garfield</i>",
+				genres: ["nonfiction", "all"]
+			},
+			{
+				id: "111",
+				title: "What If?: Serious Scientific Answers to Absurd Hypothetical Questions by <i>Randall Munroe</i>",
+				series: "Book 1",
+				genres: ["nonfiction", "all", "series", "science", "humor"]
+			},
+			{
+				id: "112",
+				title: "Secluded Cabin Sleeps Six by <i>Lisa Unger</i>",
+				genres: ["fiction", "all", "thriller", "crime", "horror"]
+			},
+			{
+				id: "113",
+				title: "Gideon the Ninth by <i>Tamsyn Muir</i>",
+				series: "Book 1",
+				genres: ["fiction", "all", "series", "fantasy", "science fiction", "lgbtqia", "horror"]
+			},
+			{
+				id: "114",
+				title: "A Little Life by <i>Hanya Yanagihara</i>",
+				genres: ["fiction", "all", "lgbtqia", "bipoc"]
+			},
+			{
+				id: "115",
+				title: "Money: A User's Guide by <i>Laura Whateley</i>",
+				genres: ["nonfiction", "all", "science"]
+			},
+			{
+				id: "116",
+				title: "The House Across the Lake by <i>Riley Sager</i>",
+				genres: ["fiction", "all", "thriller", "horror"]
+			},
+			{
+				id: "117",
+				title: "The Woman in the Library by <i>Sulari Gentill</i>",
+				genres: ["fiction", "all", "thriller", "crime", "bipoc"]
+			},
+			{
+				id: "118",
+				title: "Never Let Me Go by <i>Kazuo Ishiguro</i>",
+				genres: ["fiction", "all", "science fiction", "romance", "classics", "bipoc"]
+			},
+			{
+				id: "119",
+				title: "The Night and Its Moon by <i>Piper CJ</i>",
+				series: "Book 1",
+				genres: ["fiction", "all", "fantasy", "romance", "lgbtqia", "series"]
+			},
+			{
+				id: "120",
+				title: "The Gloom Between Stars by <i>Piper CJ</i>",
+				series: "Book 2",
+				genres: ["fiction", "all", "fantasy", "romance", "lgbtqia", "series"]
+			},
+			{
+				id: "121",
+				title: "Thirteen Storeys by <i>Jonathan Sims</i>",
+				genres: ["fiction", "all", "horror", "thriller", "fantasy"]
+			},
+			{
+				id: "122",
+				title: "The Woman in Cabin 10 by <i>Ruth Ware</i>",
+				genres: ["fiction", "all", "physical", "thriller", "crime"]
+			},
+			{
+				id: "123",
+				title: "Lock Every Door by <i>Riley Sager</i>",
+				genres: ["fiction", "all", "thriller", "horror", "crime"]
+			},
+			{
+				id: "124",
+				title: "A Short Stay in Hell by <i>Steven L. Peck</i>",
+				genres: ["fiction", "all", "horror", "fantasy"]
+			},
+			{
+				id: "125",
+				title: "Mules and Men by <i>Zora Neale Hurston</i>",
+				genres: ["fiction", "all", "classics", "history", "black", "bipoc"]
+			},
+			{
+				id: "126",
+				title: "Blood Debts by <i>Terry J. Benton-Walker</i>",
+				series: "Book 1",
+				genres: ["fiction", "all", "lgbtqia", "fantasy", "young adult", "black", "bipoc"]
+			},
+			{
+				id: "127",
+				title: "Men Have Called Her Crazy by <i>Anna Marie Tendler</i>",
+				genres: ["nonfiction", "all", "audiobook", "biography"]
+			},
+			{
+				id: "128",
+				title: "IQ84 by <i>Haruki Murakami</i>",
+				genres: ["fiction", "all", "fantasy", "science fiction", "bipoc"]
+			},
+			{
+				id: "129",
+				title: "The Phoenix Guards by <i>Steven Brust</i>",
+				genres: ["fiction", "all", "audiobook", "fantasy", "science fiction", "adventure", "humor"]
+			},
+			{
+				id: "130",
+				title: "Oliver Twist by <i>Charles Dickens</i>",
+				genres: ["fiction", "all", "classics", "historical fiction"]
+			},
+			{
+				id: "131",
+				title: "The Invisible Man by <i>H.G. Wells</i>",
+				genres: ["fiction", "all", "ebook", "classics", "science fiction", "horror", "fantasy"]
+			},
+			{
+				id: "132",
+				title: "The Last Time I Lied by <i>Riley Sager</i>",
+				genres: ["fiction", "all", "audiobook", "thriller", "horror", "crime"]
+			}, 
+			{
+				id: "133",
+				title: "A Dumb Birds Field Guide to the Worst Birds Ever by <i>Matt Kracht</i>",
+				genres: ["nonfiction", "science", "humor", "all"]
+			},
+			{
+				id: "134",
+				title: "One by One by <i>Ruth Ware</i>",
+				genres: ["fiction", "all", "physical", "thriller", "crime"]
+			},
+			{
+				id: "135",
+				title: "The Lying Game by <i>Ruth Ware</i>",
+				genres: ["fiction", "all", "thriller", "crime", "physical"]
+			},
+			{
+				id: "136",
+				title: "A Beautiful Mind by <i>Sylvia Nasar</i>",
+				genres: ["fiction", "all", "biography", "science", "history"]
+			},
+			{
+				id: "137",
+				title: "Bury Your Gays by <i>Chuck Tingle</i>",
+				genres: ["fiction", "all", "lgbtqia", "horror", "thriller", "audiobook", "science fiction"]
+			},
+			{
+				id: "138",
+				title: "An American Marriage by <i>Tayari Jones</i>",
+				genres: ["fiction", "romance", "black", "bipoc", "all"]
+			},
+			{
+				id: "139",
+				title: "Maybe You Should Talk to Someone by <i>Lori Gottlieb</i>",
+				genres: ["nonfiction", "all", "science", "biography"]
+			},
+			{
+				id: "140",
+				title: "The Haar by <i>David Sodergren</i>",
+				genres: ["all", "fiction", "horror", "romance", "fantasy", "science fiction"]
+			}, 
+						{
+				id: "141",
+				title: "Passing by <i>Nella Larsen</i>",
+				genres: ["all", "black", "bipoc", "classics", "historical fiction"]
+			},
+			{
+				id: "142",
+				title: "Napoleon's Hemorrhoids: ...and Other Small Events That Changed History by <i>Phil Mason</i>",
+				genres: ["nonfiction", "all", "humor"]
+			},
+			{
+				id: "143",
+				title: "Listen for the Lie by <i>Amy Tintera</i>",
+				genres: ["fiction", "thriller", "all", "crime"]
+			},
+			{
+				id: "144",
+				title: "The Souls of Black Folk by <i>W.E.B. Du Bois</i>",
+				genres: ["all", "nonfiction", "classics", "black", "bipoc", "history", "physical"]
+			},
+			{
+				id: "145",
+				title: "Watchmen by <i>Alan Moore</i>",
+				genres: ["all", "fiction", "science fiction", "classics", "fantasy", "physical"]
+			},
+			{
+				id: "146",
+				title: "Grimm's Fairy Tales by <i>Jacob & Wilhelm Grimm</i>",
+				genres: ["all", "fiction", "classics", "fantasy", "physical"]
+			},
+			{
+				id: "147",
+				title: "Sabriel by <i>Garth Nix</i>",
+				genres: ["all", "fiction", "fantasy", "young adult", "adventure", "physical"]
+			},
+			{
+				id: "148",
+				title: "Madea and Other Plays by <i>Euripedes</i>",
+				genres: ["all", "fiction", "classics", "physical"]
+			},
+			{
+				id: "149",
+				title: "The Three Theben Plays: Antigone, Oedipus the King, and Oedipus at Colonus by <i>Sophocles</i>",
+				genres: ["all", "classics", "fiction", "physical"]
+			}, 
+			{
+				id: "150",
+				title: "Krik? Krak! by <i>Edwidge Danticat</i>",
+				genres: ["all", "fiction", "historical fiction", "black", "bipoc"]
+			},
+			{
+				id: "151",
+				title: "The Official C.I.A. Manual of Trickery and Deception by <i>H. Keith Melton & Robert Wallace</i>",
+				genres: ["all", "nonfiction", "history", "crime", "physical"]
+			},
+			{
+				id: "152",
+				title: "Bad Feminist by <i>Roxane Gay</i>",
+				genres: ["all", "nonfiction", "biography", "physical"]
+			},
+			{
+				id: "153",
+				title: "The Misadventures of Awkward Black Girl by <i>Issa Rae</i>",
+				genres: ["all", "nonfiction", "biography", "humor", "black", "bipoc", "physical"]
+			},
+			{
+				id: "154",
+				title: "Mudbound by <i>Hillary Jordan</i>",
+				genres: ["all", "fiction", "historical fiction", "physical"]
+			},
+			{
+				id: "155",
+				title: "Animal Farm by <i>George Orwell</i>",
+				genres: ["all", "fiction", "science fiction", "physical"]
+			},
+			{
+				id: "156",
+				title: "Dodger by <i>Terry Pratchett</i>",
+				series: "Book 1",
+				genres: ["all", "fiction", "fantasy", "young adult", "historical fiction", "humor", "physical"]
+			},
+			{
+				id: "157",
+				title: "Blaze by <i>Richard Bachman aka. Stephen King</i>",
+				genres: ["all", "fiction", "horror", "physical", "thriller", "crime"]
+			},
+			{
+				id: "158",
+				title: "Working Conjure by <i>Sen Moise</i>",
+				genres: ["all", "nonfiction", "physical"]
+			},
+			{
+				id: "159",
+				title: "Grooming, Gossip, and the Evolution of Language by <i>Robin I.M. Dunbar</i>",
+				genres: ["all", "nonfiction", "science", "history", "physical"]
+			},
+			{
+				id: "160",
+				title: "The Jungle by <i>Upton Sinclair</i>",
+				genres: ["all", "classics", "fiction", "physical", "historical fiction"]
+			},
+			{
+				id: "161",
+				title: "American Slaves Tell Their Stories by <i>Octavia V. Rogers Albert</i>",
+				genres: ["all", "nonfiction", "history", "physical", "biography", "black", "bipoc"]
+			},
+			{
+				id: "162",
+				title: "They Both Die at the End by <i>Adam Silvera</i>",
+				genres: ["all", "fiction", "young adult", "romance", "lgbtqia", "physical", "fantasy", "science fiction"]
+			},
+			{
+				id: "163",
+				title: "The Haunting of Hill House by <i>Shirley Jackson</i>",
+				genres: ["all", "fiction", "horror", "classics", "thriller", "physical"]
+			},
+			{
+				id: "164",
+				title: "The Origin of Species by <i>Charles Darwin</i>",
+				genres: ["all", "nonficiton", "science", "classics", "history", "physical"]
+			},
+			{
+				id: "165",
+				title: "Mojo Workin' by <i>Katrina Hazzard-Donald</i>",
+				genres: ["all", "nonfiction", "history", "physical", "black", "bipoc"]
+			},
+			{
+				id: "166",
+				title: "Sag Harbor by <i>Colson Whitehead</i>",
+				genres: ["all", "fiction", "historical fiction", "physical", "black", "bipoc", "young adult"]
+			},
+			{
+				id: "167",
+				title: "NOS4A2 by <i>Joe Hill</i>",
+				genres: ["all", "fiction", "thriller", "fantasy", "physical"]
+			},
+			{
+				id: "168",
+				title: "Water for Elephants by <i>Sarah Gruen</i>",
+				genres: ["all", "fiction", "historical fiction", "romance"]
+			},
+			{
+				id: "169",
+				title: "Paradise Lost by <i>John Milton</i>",
+				genres: ["all", "fiction", "classics", "poetry", "fantasy", "physical", "ebook"]
+			},
+			{
+				id: "170",
+				title: "The Last Thing He Told Me by <i>Laura Dave</i>",
+				genres: ["all", "fiction", "ebook", "thriller"]
+			},
+			{
+				id: "171",
+				title: "Sawbones by <i>Justin McElroy & Sydnee McElroy</i>",
+				genres: ["all", "nonfiction", "science", "ebook", "humor", "history"]
+			},
+			{
+				id: "172",
+				title: "Mortuary Confidential by <i>Todd Harra & Ken McKenzie</i>",
+				genres: ["all", "nonfiction", "ebook", "science", "biography", "humor"]
+			},
+			{
+				id: "173",
+				title: "The Hundred Thousand Kingdoms by <i>N.K. Jemisin</i>",
+				genres: ["all", "fiction", "fantasy", "black", "bipoc", "ebook", "romance", "science fiction"]
+			},
+			{
+				id: "174",
+				title: "Frankenstein by <i>Mary Wollstonecraft Shelley</i>",
+				genres: ["all", "fiction", "horror", "science fiction", "classics", "fantasy", "ebook"]
+			},
+			{
+				id: "175",
+				title: "The Picture of Dorian Gray by <i>Oscar Wilde</i>",
+				genres: ["all", "fiction", "classics", "horror", "fantasy", "ebook", "lgbtqia"]
+			},
+			{
+				id: "176",
+				title: "Why Are All the Black Kids Sitting Together in the Cafeteria? by <i>Beverly Daniel Tatum</i>",
+				genres: ["all", "nonfiction", "black", "bipoc", "history", "physical"]
+			},
+			{
+				id: "177",
+				title: "Contact by <i>Carl Sagan</i>",
+				genres: ["all", "fiction", "science", "science fiction", "classics", "fantasy", "audiobook"]
+			},
+			{
+				id: "178",
+				title: "The Message by <i>Ta-Nehisi Coates</i>",
+				genres: ["all", "nonfiction", "audiobook", "history", "biography", "black", "bipoc"]
+			},
+			{
+				id: "179",
+				title: "They Were Her Property by <i>STephanie E. Jones-Rogers</i>",
+				genres: ["all", "nonfiction", "history", "history", "audiobook"]
+			}
+	/*		{
+				id: "000",
+				title: "Title by <i>Author</i>",
+				genres: ["all", "genre", "genre"]
+			},
+			{
+				id: "000",
+				title: "Title by <i>Author</i>",
+				genres: ["all", "genre", "genre"]
+			} 
+	*/
+		];
+		
+	</script>
+	
+	<footer>
+		<h4>Camille Crawford</h4>
+	</footer>
+	
+	</body>
+	
+
+</html>
